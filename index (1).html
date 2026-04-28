@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>キャラクター図鑑</title>
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #0f0f0f;
+  color: #eee;
+}
+
+/* タイトル */
+header {
+  text-align: center;
+  padding: 20px;
+  background: #1a1a1a;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+/* グリッド */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+/* カード */
+.card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.name {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* モーダル */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+<header>キャラクター図鑑</header>
+
+<div class="container" id="list"></div>
+
+<!-- 詳細モーダル -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="close" onclick="closeModal()">×</div>
+    <img id="m-img">
+    <h2 id="m-name"></h2>
+    <p id="m-detail"></p>
+  </div>
+</div>
+
+<script>
+const characters = [
+  {
+    name: "HF-29",
+    img: "https://via.placeholder.com/400x250",
+    detail: "種族：半蜘蛛\n性格：幼く人懐っこい\n能力：蜘蛛の巣で拘束\n戦闘：近接型"
+  },
+  {
+    name: "FC-15",
+    img: "https://via.placeholder.com/400x250",
+    detail: "種族：水生型\n性格：冷静沈着\n能力：水流操作\n戦闘：中距離型"
+  }
+];
+
+// 一覧生成
+const list = document.getElementById("list");
+
+characters.forEach(c => {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <img src="${c.img}">
+    <div class="name">${c.name}</div>
+  `;
+  div.onclick = () => openModal(c);
+  list.appendChild(div);
+});
+
+// モーダル処理
+function openModal(c) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("m-img").src = c.img;
+  document.getElementById("m-name").innerText = c.name;
+  document.getElementById("m-detail").innerText = c.detail;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
