@@ -3,20 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <title>キャラクター図鑑</title>
-<style>
+  <style>
 body {
   margin: 0;
   font-family: sans-serif;
   background: #0f0f0f;
   color: #eee;
 }
-  
-  h2 {
+
+h2 {
   border-left: 4px solid #888;
   padding-left: 10px;
   margin: 20px;
 }
-</style>
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: #1a1a1a;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+  </style>
 
 /* タイトル */
 header {
