@@ -3,12 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>キャラクター図鑑</title>
-  <style>
+
+<style>
 body {
   margin: 0;
   font-family: sans-serif;
   background: #0f0f0f;
   color: #eee;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: #1a1a1a;
+  font-size: 24px;
+  letter-spacing: 2px;
 }
 
 h2 {
@@ -17,14 +26,6 @@ h2 {
   margin: 20px;
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-  background: #1a1a1a;
-  font-size: 24px;
-  letter-spacing: 2px;
-}
-
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -32,37 +33,6 @@ header {
   padding: 20px;
 }
 
-.card {
-  background: #1a1a1a;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-  </style>
-
-/* タイトル */
-header {
-  text-align: center;
-  padding: 20px;
-  background: #1a1a1a;
-  font-size: 24px;
-  letter-spacing: 2px;
-}
-
-/* グリッド */
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-/* カード */
 .card {
   background: #1a1a1a;
   border-radius: 10px;
@@ -87,7 +57,6 @@ header {
   text-align: center;
 }
 
-/* モーダル */
 .modal {
   position: fixed;
   top: 0;
@@ -119,14 +88,14 @@ header {
   font-size: 20px;
 }
 </style>
+
 </head>
 <body>
 
 <header>キャラクター図鑑</header>
 
-<div class="container" id="list"></div>
+<div id="list"></div>
 
-<!-- 詳細モーダル -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <div class="close" onclick="closeModal()">×</div>
@@ -137,7 +106,7 @@ header {
 </div>
 
 <script>
-  const categories = [
+const categories = [
   {
     title: "△△",
     characters: [
@@ -175,10 +144,7 @@ header {
   }
 ];
 
-// 一覧生成
 const list = document.getElementById("list");
-
-  const list = document.getElementById("list");
 
 categories.forEach(cat => {
   const title = document.createElement("h2");
@@ -202,7 +168,6 @@ categories.forEach(cat => {
   list.appendChild(grid);
 });
 
-// モーダル処理
 function openModal(c) {
   document.getElementById("modal").style.display = "flex";
   document.getElementById("m-img").src = c.img;
